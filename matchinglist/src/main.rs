@@ -1,23 +1,25 @@
 extern crate rand;
-use rand::{thread_rng, sample};
 use std::fs;
 use std::io::{BufWriter, Write};
 
 fn main() {
-    let mut rng = thread_rng();
     let n = 26;
-    let m = 5;
+    let m = 4;
     let mut f = BufWriter::new(fs::File::create("machinglist").unwrap());
     for _ in 1..n {
-        let mut sample = sample(&mut rng, 1..n, m).iter().fold(
-            String::new(),
-            |acc, &x| {
-                acc + &*x.to_string() + " "
-            },
-        );
-        sample.pop();
-        sample = sample + "\n";
-        let b = sample.as_bytes();
+        let mut sample: Vec<u32> = Vec::new();
+        while sample.len() != m {
+            let r = rand::random::<u32>() % n as u32;
+            if !sample.contains(&r) {
+                sample.push(r);
+            }
+        }
+        let mut lst = sample.iter().fold(String::new(), |acc, &x| {
+            acc + &*x.to_string() + " "
+        });
+        lst.pop();
+        lst = lst + "\n";
+        let b = lst.as_bytes();
         f.write(b).unwrap();
     }
 }
