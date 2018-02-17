@@ -1,0 +1,7 @@
+[package]
+name = "culcu"
+version = "0.1.0"
+authors = ["ASUS"]
+
+[dependencies]
+rand = "0.3.0"
