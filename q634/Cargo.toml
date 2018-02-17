@@ -1,0 +1,6 @@
+[package]
+name = "q634"
+version = "0.1.0"
+authors = ["adsc <physmx@gmail.com>"]
+
+[dependencies]
